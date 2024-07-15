@@ -10,12 +10,12 @@ class BaseSchemasMixin(BaseModel):
         from_attributes = True
 
 
-class outMixin(BaseModel):
+class outSchema(BaseModel):
     id = UUID4 = Field()
     created_at: datetime = Field()
     updated_at: datetime = Field()
 
-    @model_validator(model="before")
+    @model_validator(mode="before")
     def set_schema(cls, data):
         for key, value in data.items():
             if isinstance(value, Decimal128):
